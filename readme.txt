@@ -1,4 +1,4 @@
---Readme document for *author(s)*, *email(s)*, *UCI id(s)*--
+--Readme document for John Jameson Hogan, jjhogan@uci.edu, NetID : jjhogan
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 

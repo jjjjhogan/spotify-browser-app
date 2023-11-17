@@ -6,6 +6,7 @@ import { TrackData } from '../data/track-data';
 import { ResourceData } from '../data/resource-data';
 import { ProfileData } from '../data/profile-data';
 import { TrackFeature } from '../data/track-feature';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,13 @@ export class SpotifyService {
     //Note: toPromise() is a deprecated function that will be removed in the future.
     //It's possible to do the assignment using lastValueFrom, but we recommend using toPromise() for now as we haven't
     //yet talked about Observables. https://indepth.dev/posts/1287/rxjs-heads-up-topromise-is-being-deprecated
-    return Promise.resolve();
+    return firstValueFrom(this.http.get(this.expressBaseUrl + endpoint)).then((response) => {
+      return response;
+    }, (err) => {
+      return err;
+    });
   }
+  
 
   aboutMe():Promise<ProfileData> {
     //This line is sending a request to express, which returns a promise with some data. We're then parsing the data 
@@ -37,6 +43,10 @@ export class SpotifyService {
     //Make sure you're encoding the resource with encodeURIComponent().
     //Depending on the category (artist, track, album), return an array of that type of data.
     //JavaScript's "map" function might be useful for this, but there are other ways of building the array.
+    let urlString: string = "/search/:" + category + "/:" + resource;
+    let searchPromise =  this.sendRequestToExpress(urlString).then((data) => {
+        
+    });
     return null as any;
   }
 
