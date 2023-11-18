@@ -12,12 +12,13 @@
 
 
 2. How long, in hours, did it take you to complete this assignment?
-
+5
 
 
 3. What online resources did you consult when completing this assignment? (list specific URLs)
-
-
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+https://stackoverflow.com/questions/62456518/why-and-when-should-i-use-typescripts-return-x-as-y
+https://developer.spotify.com/documentation/web-api/reference/search
 
 4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?
 

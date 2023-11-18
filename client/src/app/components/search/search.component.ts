@@ -13,7 +13,7 @@ import { ResourceData } from '../../data/resource-data';
 })
 export class SearchComponent implements OnInit {
   searchString:string;
-  searchCategory:string = 'artist';
+  searchCategory:string = null;
   searchCategories:string[] = ['artist', 'album', 'track'];
   resources:ResourceData[];
 
@@ -24,7 +24,19 @@ export class SearchComponent implements OnInit {
 
   search() {
     //TODO: call search function in spotifyService and parse response
+    let select = document.getElementsByTagName("select")[0];
+    this.searchCategory =  select.options[select.selectedIndex].text;
+    this.spotifyService.searchFor(this.searchCategory,this.searchString).then((data) => {
+      this.resources = data;
+      
+    });
+   
     
+
+  }
+
+  isTrackSearched(){
+    return this.searchCategory == 'track'
   }
 
 }
