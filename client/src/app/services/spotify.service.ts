@@ -112,21 +112,50 @@ export class SpotifyService {
 
   getAlbum(albumId:string):Promise<AlbumData> {
     //TODO: use the album endpoint to make a request to express.
-    return null as any;
+    let urlString:string = '/album/' + encodeURIComponent(albumId);
+
+    return this.sendRequestToExpress(urlString).then((data) => {
+      return new AlbumData(data);
+    });
   }
 
   getTracksForAlbum(albumId:string):Promise<TrackData[]> {
     //TODO: use the tracks for album endpoint to make a request to express.
-    return null as any;
+    let urlString:string = '/album-tracks/' + encodeURIComponent(albumId);
+
+    return this.sendRequestToExpress(urlString).then((data) => {
+      let trackArr:TrackData[] = [];
+      for (let track of data["items"]){
+        trackArr.push(new TrackData(track));
+      }
+      return trackArr;
+    });
   }
 
   getTrack(trackId:string):Promise<TrackData> {
     //TODO: use the track endpoint to make a request to express.
-    return null as any;
+    let urlString:string = '/track/' + encodeURIComponent(trackId);
+
+    return this.sendRequestToExpress(urlString).then((data) => {
+      return new TrackData(data);
+    });
   }
 
   getAudioFeaturesForTrack(trackId:string):Promise<TrackFeature[]> {
     //TODO: use the audio features for track endpoint to make a request to express.
-    return null as any;
+    let urlString:string = '/track-audio-features/' + encodeURIComponent(trackId);
+
+    return this.sendRequestToExpress(urlString).then((data) => {
+      let featureArr:TrackFeature[] = [];
+      //'danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence'
+      featureArr.push(new TrackFeature('danceability',data['danceability']));
+      featureArr.push(new TrackFeature('energy',data['energy']));
+      featureArr.push(new TrackFeature('speechiness',data['speechiness']));
+      featureArr.push(new TrackFeature('acousticness',data['acousticness']));
+      featureArr.push(new TrackFeature('instrumentalness',data['instrumentalness']));
+      featureArr.push(new TrackFeature('valence',data['valence']));
+      featureArr.push(new TrackFeature('liveness',data['liveness']));
+      return featureArr;
+    });
   }
 }
