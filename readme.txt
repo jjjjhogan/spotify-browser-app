@@ -6,13 +6,13 @@
 - 2/2 Communicating with the webserver
 - 3/3 Populating information about the user
 - 4/4 Populating the search component
-- */5 Artist page
+- 5/5 Artist page
 - */3 Album page
 - */3 Track page
 
 
 2. How long, in hours, did it take you to complete this assignment?
-5
+10
 
 
 3. What online resources did you consult when completing this assignment? (list specific URLs)
